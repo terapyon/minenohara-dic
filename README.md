@@ -5,4 +5,5 @@
 ```
 $ sudo apt-get install qttools5-dev-tools
 (env) $ pip install PyQt5
+(env) $ pip install aiohttp
 ```
