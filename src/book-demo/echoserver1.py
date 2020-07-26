@@ -8,6 +8,7 @@ logger = logging.getLogger()  #  Added
 
 async def websocket_handler(request):
     ws = web.WebSocketResponse()
+    ws.headers['Access-Control-Allow-Origin'] = '*'
     await ws.prepare(request)
 
     async for msg in ws:
@@ -22,9 +23,17 @@ async def websocket_handler(request):
     return ws
 
 
+@web.middleware
+async def cors_middleware(request, handler):
+    response = await handler(request)
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+
 app = web.Application()  #  Added
 app.add_routes(
-    [web.get("/ws", websocket_handler),]
+    [web.get("/ws", websocket_handler),
+     web.get("/calc", cors_middleware),]
 )
 
-web.run_app(app, port=8080)
+web.run_app(app, port=8000)
