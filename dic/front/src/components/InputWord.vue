@@ -29,8 +29,8 @@ export default {
         });
     },
     removeWord() {
-      this.$store.commit("SET_SELECTED", null);
       this.$store.commit("REMOVE_WORD");
+      this.$store.commit("SET_SELECTED", null);
     }
   },
 

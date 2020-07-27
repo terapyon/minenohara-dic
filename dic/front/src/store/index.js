@@ -33,6 +33,7 @@ export default new Vuex.Store({
   },
   actions: {
     getCandidate({ commit }, word) {
+      commit("SET_WORD", word);
       const candidates = ListServices.getList(word)
       return commit("SET_CANDIDATES", candidates)
     },
