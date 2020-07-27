@@ -7,8 +7,8 @@ def return_hello():
 
 
 def start_gui():
-    eel.init("front")
-    eel.start("dist/index.html")
+    eel.init("front/dist")
+    eel.start("index.html")
 
 
 if __name__ == "__main__":

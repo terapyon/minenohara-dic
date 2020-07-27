@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="10">
+    <v-col cols="11">
       <v-text-field
         label="単語"
         placeholder="Type here..."
@@ -8,8 +8,8 @@
         :value="searchWord"
       />
     </v-col>
-    <v-col cols="2">
-      <v-btn>検索</v-btn>
+    <v-col cols="1">
+      <v-btn @click="removeWord">消す</v-btn>
     </v-col>
   </v-row>
 </template>
@@ -19,7 +19,18 @@ export default {
 
   methods: {
     submitSearch(w) {
-      this.$store.commit("SET_WORD", w);
+      this.$store
+        .dispatch("getCandidate", w)
+        .then(() => {
+          this.$store.commit("SET_SELECTED", null);
+        })
+        .catch(() => {
+          console.log("Error getList");
+        });
+    },
+    removeWord() {
+      this.$store.commit("SET_SELECTED", null);
+      this.$store.commit("REMOVE_WORD");
     }
   },
 
