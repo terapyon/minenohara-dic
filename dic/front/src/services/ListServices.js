@@ -1,18 +1,20 @@
 import { Candidate } from "../models"
 
 
-function getCandidates(word) {
+async function getCandidates(word) {
     console.log(word)
     let candidates = []
     try {
-        const candidates_obj = eel.get_candidates(word)
+        let candidates_obj = await eel.get_candidates(word)()
         for (let candidate of JSON.parse(candidates_obj)) {
+            console.log(candidate.word)
             candidates.push(
                 new Candidate(candidate.word,
                     candidate.candidate,
                     candidate.translate)
             )
         }
+        return candidates
     } catch (e) {
         console.log(e)
         candidates = [
@@ -20,8 +22,9 @@ function getCandidates(word) {
             new Candidate("initial", "", ""),
             new Candidate("initialization", "", "initialize")
         ]
+        return candidates
     }
-    return candidates
+
 }
 
 export default {
