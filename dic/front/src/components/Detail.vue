@@ -1,9 +1,9 @@
 <template>
   <v-card class="mx-auto" min-height="400">
     <v-card-text v-if="result">
-      <div>{{ result.result }}</div>
-      <p class="display-1 text--primary">{{ result.translate }}</p>
-      <p>{{ result.attr }}</p>
+      <div>{{ result.word }}</div>
+      <p class="display-1 text--primary">{{ result.result }}</p>
+      <p>{{ result.translate }}</p>
       <div class="text--primary">{{ result.additional }}</div>
     </v-card-text>
   </v-card>

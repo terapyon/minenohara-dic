@@ -7,10 +7,10 @@ export class Candidate {
 }
 
 export class Result {
-    constructor(result, translate, attr, additional) {
+    constructor(result, translate, word, additional) {
         this.result = result;
         this.translate = translate;
-        this.attr = attr;
+        this.word = word;
         this.additional = additional;
     }
 }

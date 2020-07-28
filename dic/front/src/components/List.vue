@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row v-for="(candidate, index) in candidateList" :key="index">
-      <v-col @click="showDetail(candidate.candidate, index)">
+      <v-col @click="showDetail(candidate.candidate, candidate.translate, candidate.word, index)">
         <v-card outlined :color="selected == index ? 'primary': ''">
           <v-list-item two-line>
             <v-list-item-content>
@@ -19,15 +19,9 @@ export default {
   name: "List",
 
   methods: {
-    showDetail(candidate, idx) {
-      this.$store
-        .dispatch("search", candidate)
-        .then(() => {
-          this.$store.commit("SET_SELECTED", idx);
-        })
-        .catch(() => {
-          console.log("Error search");
-        });
+    showDetail(candidate, translate, word, idx) {
+      this.$store.commit("SET_RESULT", { candidate, translate, word });
+      this.$store.commit("SET_SELECTED", idx);
     }
   },
 

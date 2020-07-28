@@ -2,12 +2,10 @@ import { Candidate } from "../models"
 
 
 async function getCandidates(word) {
-    console.log(word)
     let candidates = []
     try {
         let candidates_obj = await eel.get_candidates(word)()
         for (let candidate of JSON.parse(candidates_obj)) {
-            console.log(candidate.word)
             candidates.push(
                 new Candidate(candidate.word,
                     candidate.candidate,

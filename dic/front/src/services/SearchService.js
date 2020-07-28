@@ -1,9 +1,10 @@
-import { Result } from "../models"
+// import { Result } from "../models"
 
-export default {
-    postSearch(data) {
-        console.log(data)
-        const result = new Result(data, "訳語", "attr", "追加")
-        return result;
-    },
-};
+
+// export default {
+//     postSearch(data, mean, word) {
+//         console.log(data)
+//         const result = new Result(data, mean, word, "")
+//         return result;
+//     },
+// };
