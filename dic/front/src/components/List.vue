@@ -2,7 +2,7 @@
   <div>
     <v-row v-for="(candidate, index) in candidateList" :key="index">
       <v-col @click="showDetail(candidate.candidate, candidate.translate, candidate.word, index)">
-        <v-card outlined :color="selected == index ? 'primary': ''">
+        <v-card outlined :class="selected == index ? 'blue lighten-4': ''">
           <v-list-item two-line>
             <v-list-item-content>
               <v-list-item-title class="headline mb-1">{{ candidate.candidate }}</v-list-item-title>

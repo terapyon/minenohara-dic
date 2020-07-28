@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar dense color="primary" dark>
       <h1>辞書アプリ</h1>
     </v-app-bar>
 
