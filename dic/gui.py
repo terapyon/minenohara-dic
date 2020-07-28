@@ -9,19 +9,22 @@ def words_means(word):
     out = []
     for i in range(4):
         out.extend(list(found_word(word, i)))
-        if len(out) > LIMIT + 1:
+        if len(out) > LIMIT + 20:
             break
     return out
 
 
 def results(word):
     count = 0
+    text_list = set()
     out = words_means(word)
     for text, mean in out:
-        yield text, mean
-        count += 1
-        if count > LIMIT + 1:
-            break
+        if text not in text_list:
+            yield text, mean
+            count += 1
+            text_list.add(text)
+            if count > LIMIT + 1:
+                break
 
 
 @eel.expose
