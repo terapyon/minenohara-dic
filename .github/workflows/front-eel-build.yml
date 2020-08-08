@@ -44,6 +44,14 @@ jobs:
           cd front
           rm -rf node_modules/ package* public/ src/ vue.config.js babel.config.js index.html
           cd ..
+      - name: Remove files and dir for Windows
+        if: ${{ runner.os  == 'Windows' }}
+        run: |
+          cd front
+          rmdir node_modules
+          rmdir public
+          rmdir src
+          cd ..
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
@@ -52,9 +60,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: eel build
+      - name: eel build posix
+        if: ${{ runner.os  != 'Windows' }}
         run: |
           python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minenohara-dic --add-data db/ejdict.sqlite3:db --version-file version.txt
+          python -m zipfile -c minenohara-dic.zip dist
+      - name: eel build windows
+        if: ${{ runner.os  == 'Windows' }}
+        run: |
+          python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minenohara-dic --add-data db\ejdict.sqlite3:db --version-file version.txt
           python -m zipfile -c minenohara-dic.zip dist
       - name: Upload Release Asset Linux
         id: upload-release-asset-Linux
@@ -66,7 +80,7 @@ jobs:
           upload_url: ${{ needs.create_release.outputs.upload_url }} 
           asset_path: ./minenohara-dic.zip
           asset_name: minenohara-dic-linux.zip
-          asset_content_type: application/x-elf
+          asset_content_type: application/zip
       - name: Upload Release Asset Mac
         id: upload-release-asset-Mac
         if: ${{ runner.os  == 'macOS' }}
@@ -77,7 +91,7 @@ jobs:
           upload_url: ${{ needs.create_release.outputs.upload_url }} 
           asset_path: ./minenohara-dic.zip
           asset_name: minenohara-dic-macos.zip
-          asset_content_type: application/octet-stream
+          asset_content_type: application/zip
       - name: Upload Release Asset Windows
         id: upload-release-asset-Windows
         if: ${{ runner.os  == 'Windows' }}
@@ -88,4 +102,4 @@ jobs:
           upload_url: ${{ needs.create_release.outputs.upload_url }} 
           asset_path: ./minenohara-dic.zip
           asset_name: minenohara-dic-win.zip
-          asset_content_type: application/octet-stream
+          asset_content_type: application/zip
