@@ -30,7 +30,7 @@ jobs:
           pip install -r requirements.txt
       - name: eel build
         run: |
-          python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minanohara-dic --add-data db/ejdict.sqlite3:db --version-file version.txt
+          python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minenohara-dic --add-data db/ejdict.sqlite3:db --version-file version.txt
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
