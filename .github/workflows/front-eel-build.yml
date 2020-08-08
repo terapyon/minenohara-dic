@@ -46,11 +46,12 @@ jobs:
           cd ..
       - name: Remove files and dir for Windows
         if: ${{ runner.os  == 'Windows' }}
+        shell: pwsh
         run: |
           cd front
-          Remove-Item node_modules
-          Remove-Item public
-          Remove-Item src
+          Remove-Item node_modules\ -Recurse -Force
+          Remove-Item public\ -Recurse -Force
+          Remove-Item src\ -Recurse -Force
           cd ..
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
