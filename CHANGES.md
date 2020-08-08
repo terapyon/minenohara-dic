@@ -1,3 +1,8 @@
+# 0.1.7 (2020-08-08)
+
+- remove node_modules folder for release (terapyon)
+- multi os build (terapyon)
+
 # 0.1.6 (2020-08-08)
 
 - typo for dist filename (terapyon)
