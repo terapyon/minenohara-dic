@@ -8,7 +8,7 @@ TBD
 
 ## 作り方
 
-(env-38) $ python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minanohara-dic --add-data db/ejdict.sqlite3:db
+(env-38) $ python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minanohara-dic --add-data db/ejdict.sqlite3:db --version-file version.txt 
 
 
 ```
