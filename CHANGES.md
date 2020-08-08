@@ -1,3 +1,7 @@
+# 0.1.17 (2020-08-08)
+
+- bugfix build for windows (terapyon)
+
 # 0.1.16 (2020-08-08)
 
 - bugfix build for windows (terapyon)
