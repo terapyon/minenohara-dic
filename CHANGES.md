@@ -1,3 +1,7 @@
+# 0.1.9 (2020-08-08)
+
+- modify actions workflow multi build (terapyon)
+
 # 0.1.8 (2020-08-08)
 
 - modify actions workflow for windows (terapyon)

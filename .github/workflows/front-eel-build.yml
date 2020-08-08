@@ -4,6 +4,21 @@ on:
     tags:
       - v*.*.*
 jobs:
+  create_release:
+    name: Create release
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      steps:
+        - name: Create release
+          id: create_release
+          uses: actions/create-release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            tag_name: ${{ github.ref }}
+            release_name: Release ${{ github.ref }}
+
   release:  # job_id
     name: front-build
     runs-on: ${{ matrix.os }}
@@ -39,23 +54,36 @@ jobs:
       - name: eel build
         run: |
           python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minenohara-dic --add-data db/ejdict.sqlite3:db --version-file version.txt
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - name: Upload Release Asset
-        id: upload-release-asset 
+      - name: Upload Release Asset Linux
+        id: upload-release-asset-Linux
+        if: ${{ runner.os  == 'Linux' }}
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          upload_url: ${{ needs.create_release.outputs.upload_url }} 
           asset_path: ./dist/minenohara-dic
           asset_name: minenohara-dic
           asset_content_type: application/x-elf
+      - name: Upload Release Asset Mac
+        id: upload-release-asset-Mac
+        if: ${{ runner.os  == 'macOS' }}
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }} 
+          asset_path: ./dist/minenohara-dic.app
+          asset_name: minenohara-dic.app
+          asset_content_type: application/octet-stream
+      - name: Upload Release Asset Windows
+        id: upload-release-asset-Windows
+        if: ${{ runner.os  == 'Windows' }}
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }} 
+          asset_path: ./dist/minenohara-dic.exe
+          asset_name: minenohara-dic.exe
+          asset_content_type: application/octet-stream
