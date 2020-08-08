@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r script-requirements.txt
+          pip install -r requirements.txt
       - name: eel build
         run: |
           python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minanohara-dic --add-data db/ejdict.sqlite3:db --version-file version.txt
