@@ -6,7 +6,10 @@ on:
 jobs:
   release:  # job_id
     name: front-build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 12
@@ -18,7 +21,7 @@ jobs:
           cd front
           npm install
           npm run build
-          rm -rf package* public/ src/ vue.config.js babel.config.js index.html
+          rm -rf node_modules/ package* public/ src/ vue.config.js babel.config.js index.html
           cd ..
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
@@ -50,4 +53,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
           asset_path: ./dist/minenohara-dic
           asset_name: minenohara-dic
-          asset_content_type: application/zip
+          asset_content_type: application/x-elf
