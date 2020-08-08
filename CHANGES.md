@@ -1,4 +1,8 @@
-# 0.1.3 (2020-08-08)
+# 0.1.5 (2020-08-08)
+
+- modify python requirements.txt (terapyon)
+
+# 0.1.4 (2020-08-08)
 
 - Github Actions build test (terapyon)
 
