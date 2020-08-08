@@ -50,6 +50,7 @@ usage: __main__.py [-h] [-v] [-D] [-F] [--specpath DIR] [-n NAME]
 
 ```
  $ cd front
+ $ npm install
  $ npm run serve
  $ npm run build
  $ cd ..
