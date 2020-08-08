@@ -39,6 +39,7 @@ def get_candidates(word):
 
 def start_gui():
     app_options = {
+        "mode": "chrome",
         "port": 18085,
     }
     eel.init("front/dist")
