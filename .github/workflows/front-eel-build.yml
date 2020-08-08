@@ -69,7 +69,7 @@ jobs:
       - name: eel build windows
         if: ${{ runner.os  == 'Windows' }}
         run: |
-          python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minenohara-dic --add-data db\ejdict.sqlite3:db --version-file version.txt
+          python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minenohara-dic --add-data db\ejdict.sqlite3;db --version-file version.txt
           python -m zipfile -c minenohara-dic.zip dist
       - name: Upload Release Asset Linux
         id: upload-release-asset-Linux
