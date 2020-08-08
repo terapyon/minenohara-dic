@@ -5,6 +5,7 @@ from db.ejdic import found_word
 
 LIMIT = 10
 
+
 def words_means(word):
     out = []
     for i in range(4):
@@ -30,15 +31,18 @@ def results(word):
 @eel.expose
 def get_candidates(word):
     result = [
-        {"word": word,
-         "candidate": text,
-         "translate":  mean
-         } for text, mean in results(word)]
+        {"word": word, "candidate": text, "translate": mean}
+        for text, mean in results(word)
+    ]
     return json.dumps(result)
 
+
 def start_gui():
+    app_options = {
+        "port": 18085,
+    }
     eel.init("front/dist")
-    eel.start("index.html")
+    eel.start("index.html", **app_options)
 
 
 if __name__ == "__main__":
