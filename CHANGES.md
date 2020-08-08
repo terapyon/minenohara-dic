@@ -1,3 +1,7 @@
+# 0.1.8 (2020-08-08)
+
+- modify actions workflow for windows (terapyon)
+
 # 0.1.7 (2020-08-08)
 
 - remove node_modules folder for release (terapyon)

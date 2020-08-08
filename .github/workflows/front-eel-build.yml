@@ -16,18 +16,23 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: Install dependencies and build
+      - name: Install node dependencies and build
         run: |
           cd front
           npm install
           npm run build
+          cd ..
+      - name: Remove files and dir
+        if: ${{ runner.os  != 'Windows' }}
+        run: |
+          cd front
           rm -rf node_modules/ package* public/ src/ vue.config.js babel.config.js index.html
           cd ..
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
-      - name: Install dependencies
+      - name: Install python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
