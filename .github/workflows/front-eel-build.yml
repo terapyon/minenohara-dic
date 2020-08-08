@@ -54,7 +54,7 @@ jobs:
           pip install -r requirements.txt
       - name: eel build
         run: |
-          python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minenohara-dic --add-data db/ejdict.sqlite3:db --version-file version.txt
+          python -m eel gui.py front --noconsole --hidden-import pkg_resources.py2_warn -n minenohara-dic --add-data db/ejdict.sqlite3:db --version-file version.txt
           zip -r minenohara-dic.zip dist/
       - name: Upload Release Asset Linux
         id: upload-release-asset-Linux
