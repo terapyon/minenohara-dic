@@ -16,10 +16,10 @@ jobs:
       - name: Install dependencies and build
         run: |
           cd front
-          run: npm install
-          run: npm run build
-          run: rm -rf package* public/ src/ vue.config.js babel.config.js index.html
-          run: cd ..
+          npm install
+          npm run build
+          rm -rf package* public/ src/ vue.config.js babel.config.js index.html
+          cd ..
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
