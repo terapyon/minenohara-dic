@@ -21,6 +21,7 @@ jobs:
 
   release:  # job_id
     name: front-build
+    needs: create_release
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -51,7 +52,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          echo ${{ needs.create_release.outputs.upload_url }} 
       - name: eel build
         run: |
           python -m eel gui.py front --onefile --noconsole --hidden-import pkg_resources.py2_warn -n minenohara-dic --add-data db/ejdict.sqlite3:db --version-file version.txt
