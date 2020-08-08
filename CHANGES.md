@@ -1,3 +1,7 @@
+# 0.1.12 (2020-08-08)
+
+- onefile and zip (terapyon)
+
 # 0.1.11 (2020-08-08)
 
 - no one file (terapyon)
