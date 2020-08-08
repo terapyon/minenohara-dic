@@ -1,13 +1,15 @@
+import os
 import sqlite3
 from db.automata import Matcher, find_all_matches
 
-conn = sqlite3.connect("db/ejdict.sqlite3")
+dataset_dir = os.path.dirname(os.path.abspath(__file__))
+conn = sqlite3.connect(dataset_dir + "/ejdict.sqlite3")
 
 
 def make_sorted_words():
     c = conn.cursor()
     # sql = '''SELECT * FROM items WHERE level > 0 ORDER BY word'''
-    sql = '''SELECT * FROM items ORDER BY word'''
+    sql = """SELECT * FROM items ORDER BY word"""
     rows = c.execute(sql)
     return sorted((r[1], r[2]) for r in rows)
 

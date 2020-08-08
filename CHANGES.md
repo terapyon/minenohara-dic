@@ -1,3 +1,11 @@
+# 0.1.2 (2020-08-08)
+
+- Remove node_modules and more (terapyon)
+
+# 0.1.1 (2020-08-08)
+
+- Linux build (terapyon)
+
 # 0.1 (2020-07-28)
 
 - internal release (terapyon)
