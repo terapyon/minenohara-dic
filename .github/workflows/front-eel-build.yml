@@ -48,9 +48,9 @@ jobs:
         if: ${{ runner.os  == 'Windows' }}
         run: |
           cd front
-          rmdir node_modules
-          rmdir public
-          rmdir src
+          Remove-Item node_modules
+          Remove-Item public
+          Remove-Item src
           cd ..
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
